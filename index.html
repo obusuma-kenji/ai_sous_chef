@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>士業のためのAI活用ガイド｜最強のパートナーとして使いこなす</title>
+<meta name="description" content="社労士・行政書士など専門知識で勝負する士業のための生成AI活用セミナー。属人的業務を仕組み化し、顧客支援に集中するための実践ガイド。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Zen+Kaku+Gothic+New:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a1628;
+    --navy-mid: #132240;
+    --blue-primary: #1a6bff;
+    --blue-light: #4d8eff;
+    --blue-glow: rgba(26, 107, 255, 0.15);
+    --accent-gold: #f0c040;
+    --accent-coral: #ff6b4a;
+    --accent-green: #22c55e;
+    --white: #ffffff;
+    --gray-50: #f7f8fa;
+    --gray-100: #eef0f4;
+    --gray-200: #d8dce6;
+    --gray-600: #6b7280;
+    --gray-800: #2d3748;
+    --text-primary: #1a1a2e;
+    --text-secondary: #4a5568;
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-xl: 32px;
+    --shadow-card: 0 4px 24px rgba(10, 22, 40, 0.08);
+    --shadow-elevated: 0 12px 48px rgba(10, 22, 40, 0.12);
+    --shadow-glow: 0 0 40px rgba(26, 107, 255, 0.2);
+    --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif;
+    color: var(--text-primary);
+    background: var(--white);
+    line-height: 1.8;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 50%, #1a3a6b 100%);
+    overflow: hidden;
+    padding: 2rem;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 800px 600px at 20% 30%, rgba(26, 107, 255, 0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 600px 400px at 80% 70%, rgba(240, 192, 64, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+
+  .hero-content { position: relative; z-index: 2; text-align: center; max-width: 900px; }
+
+  .hero-badge {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background: rgba(26, 107, 255, 0.15);
+    border: 1px solid rgba(26, 107, 255, 0.3);
+    border-radius: 100px;
+    color: var(--blue-light);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    margin-bottom: 2rem;
+    backdrop-filter: blur(8px);
+    animation: fadeSlideUp 0.8s ease forwards;
+  }
+
+  .hero-title {
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    font-weight: 900;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: var(--white);
+    line-height: 1.3;
+    margin-bottom: 1.5rem;
+    animation: fadeSlideUp 0.8s 0.2s ease both;
+  }
+
+  .hero-title .accent {
+    background: linear-gradient(135deg, var(--accent-gold), #ffd700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: rgba(255, 255, 255, 0.75);
+    font-weight: 300;
+    max-width: 640px;
+    margin: 0 auto 2.5rem;
+    animation: fadeSlideUp 0.8s 0.4s ease both;
+  }
+
+  .hero-cta {
+    display: inline-flex; align-items: center; gap: 0.75rem;
+    padding: 1rem 2.5rem;
+    background: linear-gradient(135deg, var(--blue-primary), #2563eb);
+    color: var(--white);
+    text-decoration: none; font-weight: 700; font-size: 1.1rem;
+    border-radius: 100px;
+    box-shadow: 0 4px 24px rgba(26, 107, 255, 0.4);
+    transition: var(--transition);
+    animation: fadeSlideUp 0.8s 0.6s ease both;
+  }
+  .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(26, 107, 255, 0.5); }
+
+  .hero-scroll {
+    position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+    color: rgba(255,255,255,0.4); font-size: 0.75rem; letter-spacing: 0.2em;
+    animation: pulse 2s infinite;
+  }
+
+  /* ===== SECTIONS ===== */
+  .section { padding: 6rem 2rem; }
+  .section--gray { background: var(--gray-50); }
+  .section--navy { background: linear-gradient(135deg, var(--navy), var(--navy-mid)); color: var(--white); }
+  .section--green { background: linear-gradient(135deg, #064e3b, #065f46); color: var(--white); }
+
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  .section-label {
+    display: inline-block; font-size: 0.75rem; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--blue-primary); margin-bottom: 0.75rem;
+  }
+  .section--navy .section-label, .section--green .section-label { color: var(--accent-gold); }
+
+  .section-title {
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    font-weight: 900; font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+    line-height: 1.35; margin-bottom: 1rem;
+  }
+
+  .section-subtitle {
+    font-size: 1.05rem; color: var(--text-secondary);
+    max-width: 680px; margin-bottom: 3rem;
+  }
+  .section--navy .section-subtitle, .section--green .section-subtitle { color: rgba(255,255,255,0.65); }
+
+  /* ===== PROBLEM CARDS ===== */
+  .problem-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+
+  .problem-card {
+    background: var(--white); border: 1px solid var(--gray-100);
+    border-radius: var(--radius-md); padding: 2rem;
+    transition: var(--transition); position: relative; overflow: hidden;
+  }
+  .problem-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--accent-coral), var(--accent-gold));
+    transform: scaleX(0); transition: var(--transition);
+  }
+  .problem-card:hover::before { transform: scaleX(1); }
+  .problem-card:hover { box-shadow: var(--shadow-elevated); transform: translateY(-4px); }
+
+  .problem-icon {
+    width: 48px; height: 48px;
+    background: linear-gradient(135deg, var(--accent-coral), #ff8a65);
+    border-radius: var(--radius-sm);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; margin-bottom: 1rem;
+  }
+  .problem-card h3 { font-weight: 700; font-size: 1.15rem; margin-bottom: 0.5rem; }
+  .problem-card p { color: var(--text-secondary); font-size: 0.95rem; }
+
+  /* ===== OVERVIEW IMAGE ===== */
+  .overview-image-wrap { margin: 3rem 0; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-elevated); border: 1px solid var(--gray-100); }
+  .overview-image-wrap img { width: 100%; height: auto; display: block; }
+
+  /* ===== ROLE MATRIX ===== */
+  .role-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem; }
+  @media (max-width: 768px) { .role-grid { grid-template-columns: 1fr; } }
+
+  .role-card { border-radius: var(--radius-md); padding: 2.5rem; position: relative; overflow: hidden; }
+  .role-card--ai { background: linear-gradient(135deg, #e8f0fe, #d6e4ff); border: 1px solid rgba(26, 107, 255, 0.15); }
+  .role-card--human { background: linear-gradient(135deg, #fff8e1, #ffecb3); border: 1px solid rgba(240, 192, 64, 0.3); }
+  .role-card h3 { font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 900; font-size: 1.3rem; margin-bottom: 0.5rem; }
+  .role-card .role-subtitle { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem; }
+
+  .role-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .role-list li { padding-left: 1.5rem; position: relative; font-size: 0.95rem; }
+  .role-list li::before { content: '▸'; position: absolute; left: 0; color: var(--blue-primary); font-weight: 700; }
+  .role-card--human .role-list li::before { color: var(--accent-gold); }
+
+  /* ===== AI TOOLS ===== */
+  .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+
+  .tool-card {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius-md); padding: 2rem;
+    backdrop-filter: blur(10px); transition: var(--transition);
+  }
+  .tool-card:hover { background: rgba(255,255,255,0.1); border-color: rgba(26, 107, 255, 0.4); transform: translateY(-4px); }
+
+  .tool-name { font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 900; font-size: 1.2rem; margin-bottom: 0.25rem; }
+  .tool-tag { font-size: 0.75rem; color: var(--blue-light); margin-bottom: 0.75rem; display: block; }
+  .tool-card p { font-size: 0.9rem; color: rgba(255,255,255,0.7); }
+  .tool-best { font-size: 0.85rem; color: var(--accent-gold); margin-top: 0.75rem; font-weight: 500; }
+  .tool-warn { font-size: 0.8rem; color: var(--accent-coral); margin-top: 0.5rem; opacity: 0.9; }
+
+  /* ===== CHECKLIST TABLE ===== */
+  .check-table { width: 100%; border-collapse: collapse; margin-top: 2rem; font-size: 0.95rem; }
+  .check-table th, .check-table td { padding: 1rem 1.25rem; text-align: left; border-bottom: 1px solid var(--gray-100); }
+  .check-table th { background: var(--navy); color: var(--white); font-weight: 700; font-size: 0.85rem; letter-spacing: 0.05em; }
+  .check-table tr:hover { background: var(--blue-glow); }
+  .check-table td:first-child { font-weight: 600; white-space: nowrap; }
+  .check-table .check-icon { color: var(--accent-green); font-weight: 700; margin-right: 0.5rem; }
+
+  @media (max-width: 768px) {
+    .check-table { font-size: 0.85rem; }
+    .check-table th, .check-table td { padding: 0.75rem; }
+    .check-table td:first-child { white-space: normal; }
+  }
+
+  /* ===== 8 RULES ===== */
+  .rules-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin-top: 2rem; }
+
+  .rule-item {
+    display: flex; align-items: flex-start; gap: 1rem; padding: 1.25rem;
+    background: var(--white); border: 1px solid var(--gray-100);
+    border-radius: var(--radius-sm); transition: var(--transition);
+  }
+  .rule-item:hover { box-shadow: var(--shadow-card); }
+
+  .rule-num {
+    flex-shrink: 0; width: 36px; height: 36px;
+    background: var(--navy); color: var(--white); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 900; font-size: 0.85rem;
+  }
+  .rule-item.rule-critical { border: 2px solid var(--accent-coral); background: #fff5f3; }
+  .rule-item.rule-critical .rule-num { background: var(--accent-coral); }
+  .rule-text h4 { font-size: 0.95rem; margin-bottom: 0.25rem; }
+  .rule-text p { font-size: 0.85rem; color: var(--text-secondary); }
+
+  /* ===== PROMPT EXAMPLES ===== */
+  .prompt-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+
+  .prompt-card {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--radius-md); padding: 1.75rem;
+    transition: var(--transition);
+  }
+  .prompt-card:hover { background: rgba(255,255,255,0.1); border-color: var(--accent-gold); }
+
+  .prompt-card-label {
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
+    color: var(--accent-gold); margin-bottom: 0.5rem;
+  }
+  .prompt-card h4 { color: var(--white); font-size: 1.05rem; margin-bottom: 0.75rem; }
+
+  .prompt-text {
+    background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius-sm); padding: 1rem 1.25rem;
+    font-size: 0.85rem; color: rgba(255,255,255,0.85);
+    line-height: 1.7; font-family: 'Noto Sans JP', monospace;
+    position: relative;
+  }
+
+  .prompt-copy {
+    position: absolute; top: 0.5rem; right: 0.5rem;
+    background: rgba(255,255,255,0.15); border: none;
+    color: var(--white); padding: 0.25rem 0.6rem;
+    border-radius: 4px; cursor: pointer; font-size: 0.7rem;
+    transition: var(--transition);
+  }
+  .prompt-copy:hover { background: rgba(255,255,255,0.3); }
+
+  /* ===== FLOW TABLE ===== */
+  .flow-table { width: 100%; border-collapse: collapse; margin-top: 2rem; font-size: 0.95rem; }
+  .flow-table th, .flow-table td { padding: 0.85rem 1rem; text-align: left; border-bottom: 1px solid var(--gray-100); }
+  .flow-table th { background: var(--blue-primary); color: var(--white); font-weight: 600; font-size: 0.85rem; }
+  .flow-table tr:nth-child(even) { background: var(--gray-50); }
+  .flow-table .badge-ai { display: inline-block; padding: 0.15rem 0.5rem; background: #dbeafe; color: var(--blue-primary); border-radius: 4px; font-size: 0.75rem; font-weight: 700; }
+  .flow-table .badge-human { display: inline-block; padding: 0.15rem 0.5rem; background: #fef3c7; color: #92400e; border-radius: 4px; font-size: 0.75rem; font-weight: 700; }
+  .flow-table .badge-both { display: inline-block; padding: 0.15rem 0.5rem; background: #d1fae5; color: #065f46; border-radius: 4px; font-size: 0.75rem; font-weight: 700; }
+
+  @media (max-width: 768px) {
+    .flow-table { font-size: 0.85rem; }
+    .flow-table th, .flow-table td { padding: 0.6rem; }
+  }
+
+  /* ===== MEDIA SECTIONS ===== */
+  .media-block { margin: 3rem 0; }
+
+  .media-label {
+    font-weight: 700; font-size: 1rem; margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .media-label .icon {
+    width: 32px; height: 32px; border-radius: 8px;
+    display: inline-flex; align-items: center; justify-content: center; font-size: 1rem;
+  }
+  .media-label .icon--video { background: #fee2e2; }
+  .media-label .icon--audio { background: #dbeafe; }
+  .media-label .icon--pdf { background: #fef3c7; }
+  .media-label .icon--image { background: #d1fae5; }
+
+  .media-frame {
+    border-radius: var(--radius-md); overflow: hidden;
+    box-shadow: var(--shadow-card); border: 1px solid var(--gray-100);
+    background: var(--gray-50);
+  }
+  .media-frame iframe, .media-frame video, .media-frame img { width: 100%; display: block; border: none; }
+  .media-frame video { max-height: 540px; object-fit: contain; background: #000; }
+
+  .pdf-object-wrap { position: relative; width: 100%; height: 600px; }
+  .pdf-object-wrap object { width: 100%; height: 100%; display: block; }
+  @media (max-width: 768px) { .pdf-object-wrap { height: 400px; } }
+
+  .pdf-fallback {
+    text-align: center; padding: 1.5rem; background: var(--gray-50); font-size: 0.9rem;
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1rem;
+  }
+  .pdf-fallback-text { color: var(--text-secondary); }
+
+  .pdf-btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.65rem 1.5rem;
+    background: var(--blue-primary); color: var(--white);
+    text-decoration: none; font-weight: 600; font-size: 0.9rem;
+    border-radius: 100px; transition: var(--transition);
+    box-shadow: 0 2px 12px rgba(26, 107, 255, 0.25);
+  }
+  .pdf-btn:hover { background: #1557d4; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(26, 107, 255, 0.35); }
+  .pdf-btn--dl { background: var(--navy); }
+  .pdf-btn--dl:hover { background: #1a2744; }
+
+  /* ===== 8 AI ASSISTANTS ===== */
+  .assistants-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; margin-top: 2rem; }
+
+  .assistant-card {
+    background: var(--white); border: 1px solid var(--gray-100);
+    border-radius: var(--radius-md); padding: 1.5rem;
+    text-align: center; transition: var(--transition);
+  }
+  .assistant-card:hover { border-color: var(--blue-primary); box-shadow: var(--shadow-card); transform: translateY(-2px); }
+  .assistant-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+  .assistant-card h4 { font-size: 1rem; margin-bottom: 0.35rem; }
+  .assistant-card p { font-size: 0.8rem; color: var(--text-secondary); }
+
+  /* ===== WORKFLOW STEPS ===== */
+  .workflow-steps { display: flex; gap: 0; margin-top: 2rem; overflow-x: auto; padding-bottom: 1rem; }
+
+  .wf-step { flex: 1; min-width: 140px; text-align: center; position: relative; padding: 1.5rem 1rem; }
+  .wf-step::after { content: '→'; position: absolute; right: -8px; top: 50%; transform: translateY(-50%); font-size: 1.5rem; color: var(--gray-200); font-weight: 300; }
+  .wf-step:last-child::after { display: none; }
+
+  .wf-step-num {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--blue-primary); color: var(--white);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 900; font-size: 0.85rem; margin: 0 auto 0.75rem;
+  }
+  .wf-step:last-child .wf-step-num { background: var(--accent-gold); color: var(--navy); }
+  .wf-step h4 { font-size: 0.85rem; font-weight: 700; margin-bottom: 0.25rem; }
+  .wf-step p { font-size: 0.75rem; color: var(--text-secondary); }
+
+  /* ===== PDCA CYCLE ===== */
+  .pdca-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem; }
+  @media (max-width: 768px) { .pdca-grid { grid-template-columns: 1fr; } }
+
+  .pdca-card {
+    background: var(--white); border-radius: var(--radius-md);
+    padding: 2rem; position: relative; overflow: hidden;
+    border-left: 4px solid var(--blue-primary);
+  }
+  .pdca-card:nth-child(2) { border-left-color: var(--accent-green); }
+  .pdca-card:nth-child(3) { border-left-color: var(--accent-gold); }
+  .pdca-card:nth-child(4) { border-left-color: var(--accent-coral); }
+
+  .pdca-letter { font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 900; font-size: 2rem; line-height: 1; margin-bottom: 0.25rem; }
+  .pdca-card:nth-child(1) .pdca-letter { color: var(--blue-primary); }
+  .pdca-card:nth-child(2) .pdca-letter { color: var(--accent-green); }
+  .pdca-card:nth-child(3) .pdca-letter { color: var(--accent-gold); }
+  .pdca-card:nth-child(4) .pdca-letter { color: var(--accent-coral); }
+  .pdca-card h4 { font-size: 1rem; margin-bottom: 0.5rem; }
+  .pdca-card p { font-size: 0.9rem; color: var(--text-secondary); }
+
+  /* ===== LINKS GRID ===== */
+  .links-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 2rem; }
+
+  .link-card {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--radius-sm); text-decoration: none;
+    color: var(--white); transition: var(--transition);
+  }
+  .link-card:hover { background: rgba(255,255,255,0.12); border-color: var(--accent-gold); transform: translateX(4px); }
+  .link-card .link-icon { font-size: 1.5rem; flex-shrink: 0; }
+  .link-card .link-text { font-size: 0.9rem; font-weight: 500; }
+  .link-card .link-arrow { margin-left: auto; color: rgba(255,255,255,0.4); font-size: 1.2rem; }
+
+  /* ===== CTA SECTION ===== */
+  .cta-section {
+    text-align: center; padding: 5rem 2rem;
+    background: linear-gradient(135deg, var(--navy), #1a3a6b);
+    position: relative; overflow: hidden;
+  }
+  .cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 600px 400px at 50% 50%, rgba(26, 107, 255, 0.15), transparent); }
+  .cta-content { position: relative; z-index: 2; }
+
+  .cta-title { font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 900; font-size: clamp(1.5rem, 3vw, 2.2rem); color: var(--white); margin-bottom: 1rem; }
+  .cta-text { color: rgba(255,255,255,0.7); margin-bottom: 2rem; font-size: 1.05rem; }
+
+  .cta-btn {
+    display: inline-flex; align-items: center; gap: 0.75rem;
+    padding: 1rem 3rem;
+    background: linear-gradient(135deg, var(--accent-gold), #ffd700);
+    color: var(--navy); text-decoration: none; font-weight: 900; font-size: 1.15rem;
+    border-radius: 100px;
+    box-shadow: 0 4px 24px rgba(240, 192, 64, 0.4);
+    transition: var(--transition);
+  }
+  .cta-btn:hover { transform: translateY(-2px) scale(1.02); }
+
+  /* ===== FOOTER ===== */
+  .footer { background: var(--navy); color: rgba(255,255,255,0.5); text-align: center; padding: 2.5rem 2rem; font-size: 0.85rem; }
+  .footer a { color: var(--blue-light); text-decoration: none; }
+
+  /* ===== SECTION DIVIDER ===== */
+  .section-divider {
+    text-align: center; padding: 3rem 2rem;
+    background: linear-gradient(135deg, var(--blue-primary), #2563eb);
+    color: var(--white);
+  }
+  .section-divider h2 {
+    font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 900;
+    font-size: clamp(1.3rem, 3vw, 2rem);
+  }
+  .section-divider p { color: rgba(255,255,255,0.7); margin-top: 0.5rem; font-size: 1rem; }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes fadeSlideUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 0.8; } }
+
+  .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    .section { padding: 4rem 1.25rem; }
+    .hero { min-height: 90vh; padding: 1.5rem; }
+    .workflow-steps { flex-direction: column; }
+    .wf-step::after { content: '↓'; right: auto; left: 50%; top: auto; bottom: -4px; transform: translateX(-50%); }
+    .prompt-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <span class="hero-badge">kenjispark AI士業ラボ セミナー</span>
+    <h1 class="hero-title">AIを<span class="accent">「最強のパートナー」</span>に<br>する戦略</h1>
+    <p class="hero-subtitle">社労士・行政書士など専門知識で勝負するすべての士業へ。<br>属人的業務を標準化し、顧客支援に集中するための生成AI活用ガイド。</p>
+    <a href="#contents" class="hero-cta">セミナー内容を見る ↓</a>
+  </div>
+  <div class="hero-scroll">SCROLL</div>
+</section>
+
+<!-- ===== PROBLEM ===== -->
+<section class="section section--gray" id="contents">
+  <div class="container fade-in">
+    <span class="section-label">The Challenge</span>
+    <h2 class="section-title">限界を迎える実務の現場</h2>
+    <p class="section-subtitle">専門家の時間は、本来の価値提供ではなく「作業」に奪われている。</p>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-icon">📜</div>
+        <h3>激化する法改正</h3>
+        <p>2025年4月施行の育児介護休業法など、常に最新情報のキャッチアップが必須。</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">⏳</div>
+        <h3>人手不足と単価下落</h3>
+        <p>少ないリソースで高い品質を維持しなければならないプレッシャー。</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">🌊</div>
+        <h3>情報過多</h3>
+        <p>「生産性の極限」に直面し、本来の価値提供に時間が割けない。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== OVERVIEW IMAGE ===== -->
+<section class="section">
+  <div class="container fade-in">
+    <span class="section-label">Overview</span>
+    <h2 class="section-title">全体像：士業のためのAI活用ガイド</h2>
+    <p class="section-subtitle">主要AIツールの戦略的使い分け・安全利用ルール・実務フローを一枚に凝縮。</p>
+    <div class="media-block">
+      <div class="media-frame">
+        <img src="士業向けAI活用ガイド.png" alt="士業のためのAI活用ガイド全体像" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ROLE MATRIX ===== -->
+<section class="section section--gray">
+  <div class="container fade-in">
+    <span class="section-label">Role Matrix</span>
+    <h2 class="section-title">AIと専門家の「役割分担マトリクス」</h2>
+    <p class="section-subtitle">型のある作業はAIに。価値に関わる領域は人間に。</p>
+    <div class="role-grid">
+      <div class="role-card role-card--ai">
+        <h3>🤖 AIの役割：処理と下書き</h3>
+        <p class="role-subtitle">Processing &amp; Drafting</p>
+        <ul class="role-list">
+          <li>大量情報の要約</li>
+          <li>構成案の作成</li>
+          <li>データの整理</li>
+          <li>新旧比較表の自動生成</li>
+          <li>24時間365日の根拠情報収集</li>
+        </ul>
+      </div>
+      <div class="role-card role-card--human">
+        <h3>👨‍💼 専門家の役割：責任ある判断</h3>
+        <p class="role-subtitle">Liability &amp; Contextual Judgment</p>
+        <ul class="role-list">
+          <li>最終的な法的判断と倫理的責任</li>
+          <li>顧客へのカスタマイズ</li>
+          <li>信頼関係の構築</li>
+          <li>戦略的助言</li>
+          <li>実務運用の妥当性確認</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================== -->
+<!-- ========== SECTION DIVIDER: 入門編 ========== -->
+<!-- ======================================================== -->
+<div class="section-divider">
+  <h2>📘 入門編：まずは"安全に・効率的に"使うところから</h2>
+  <p>AIは士業の仕事を奪うものではありません。調査・整理・下書きを補助する道具です。</p>
+</div>
+
+<!-- ===== AI TOOLS with details ===== -->
+<section class="section section--navy">
+  <div class="container fade-in">
+    <span class="section-label">AI Tool Map</span>
+    <h2 class="section-title">実務目的に合わせて選ぶ4つの「AIインターン」</h2>
+    <p class="section-subtitle">それぞれの強みと注意点を理解し、業務に応じて使い分ける。</p>
+    <div class="tools-grid">
+      <div class="tool-card">
+        <div class="tool-name">ChatGPT</div>
+        <span class="tool-tag">汎用・対話型</span>
+        <p>自然な日本語で文章作成・要約・アイデア出しが高速。初心者でも使いやすい。</p>
+        <div class="tool-best">📌 メール文案、セミナー企画、相談対応のたたき台</div>
+        <div class="tool-warn">⚠ 出典が曖昧になることがある</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name">Claude</div>
+        <span class="tool-tag">長文・ナレッジ蓄積</span>
+        <p>長文処理と論理性が極めて高い。Projects機能で専用AI化が可能。</p>
+        <div class="tool-best">📌 就業規則改定、助成金診断ツール設計</div>
+        <div class="tool-warn">⚠ 一部機能が英語前提の場合あり</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name">Gemini</div>
+        <span class="tool-tag">最新情報・検索連携</span>
+        <p>Google検索連携で一次情報到達。PDF・画像解析にも強い。</p>
+        <div class="tool-best">📌 法改正情報の調査補助、資料分析</div>
+        <div class="tool-warn">⚠ 日本語表現にクセが出ることがある</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name">Copilot</div>
+        <span class="tool-tag">Office連携</span>
+        <p>Office製品とのシームレスな連携。既存業務に組み込みやすい。</p>
+        <div class="tool-best">📌 議事録作成、Excel分析、社内資料整理</div>
+        <div class="tool-warn">⚠ 具体的指示が必須</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SAFETY CHECKLIST TABLE ===== -->
+<section class="section">
+  <div class="container fade-in">
+    <span class="section-label">Safety Checklist</span>
+    <h2 class="section-title">安全なAI利用チェックリスト</h2>
+    <p class="section-subtitle">AIの回答をそのまま信用しない。必ずこのチェックを通す。</p>
+    <div class="media-frame" style="overflow-x: auto;">
+      <table class="check-table">
+        <thead>
+          <tr><th>チェック項目</th><th>実施内容</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="check-icon">✓</span>出典URLを確認</td><td>「回答の根拠となるURLを提示してください」と指示する</td></tr>
+          <tr><td><span class="check-icon">✓</span>一次情報を指定</td><td>「厚労省、法令データ提供システムなど一次情報のみを根拠に」と指示する</td></tr>
+          <tr><td><span class="check-icon">✓</span>条文番号を確認</td><td>「該当する条文番号と根拠を示してください」と指示する</td></tr>
+          <tr><td><span class="check-icon">✓</span>不明は不明と回答させる</td><td>「分からない場合は推測せず不明と回答してください」と明記する</td></tr>
+          <tr><td><span class="check-icon">✓</span>そのまま渡さない</td><td>最終的な確認・判断は必ず専門家が行う</td></tr>
+          <tr><td><span class="check-icon">✓</span>複数AIで確認</td><td>重要な内容はChatGPT、Claude、Geminiなどでクロスチェックする</td></tr>
+          <tr><td><span class="check-icon">✓</span>施行日を確認</td><td>法改正では「いつから適用されるか」を必ず一次情報で確認する</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 8 RULES ===== -->
+<section class="section section--gray">
+  <div class="container fade-in">
+    <span class="section-label">8 Iron Rules</span>
+    <h2 class="section-title">プロの信頼を守る「安全利用の8つの鉄則」</h2>
+    <p class="section-subtitle">ハルシネーション・情報漏洩・法的リスクからクライアントを守る。</p>
+    <div class="rules-grid">
+      <div class="rule-item"><div class="rule-num">1</div><div class="rule-text"><h4>出典URLの確認</h4><p>根拠となるURLを必ず提示させる。</p></div></div>
+      <div class="rule-item"><div class="rule-num">2</div><div class="rule-text"><h4>一次情報の指定</h4><p>厚労省やe-Gov等の公的機関情報のみに限定。</p></div></div>
+      <div class="rule-item"><div class="rule-num">3</div><div class="rule-text"><h4>条文番号の照合</h4><p>提示された条文番号と内容が実在するか確認。</p></div></div>
+      <div class="rule-item"><div class="rule-num">4</div><div class="rule-text"><h4>「不明」の許容</h4><p>推測せず「不明な場合は不明」と明示させる。</p></div></div>
+      <div class="rule-item"><div class="rule-num">5</div><div class="rule-text"><h4>匿名化の徹底</h4><p>氏名や会社名（A社等）は絶対に入力しない。</p></div></div>
+      <div class="rule-item"><div class="rule-num">6</div><div class="rule-text"><h4>クロスチェック</h4><p>重要判断は複数のAIで検算する。</p></div></div>
+      <div class="rule-item"><div class="rule-num">7</div><div class="rule-text"><h4>施行日の確認</h4><p>「いつから適用か」は一次情報で人の目で確認。</p></div></div>
+      <div class="rule-item rule-critical"><div class="rule-num">8</div><div class="rule-text"><h4>【絶対ルール】そのまま渡さない</h4><p>AIの出力は下書き。必ず専門家のフィルターを通す。</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROMPT EXAMPLES ===== -->
+<section class="section section--green">
+  <div class="container fade-in">
+    <span class="section-label">Copy &amp; Paste Prompts</span>
+    <h2 class="section-title">今日から使える！社労士向けAIプロンプト例</h2>
+    <p class="section-subtitle">ChatGPTやClaudeにコピー＆ペーストでそのまま使えます。</p>
+    <div class="prompt-grid">
+      <div class="prompt-card">
+        <div class="prompt-card-label">例1</div>
+        <h4>法改正の要点整理</h4>
+        <div class="prompt-text">
+          <button class="prompt-copy" onclick="copyPrompt(this)">コピー</button>
+          2025年4月施行の育児介護休業法の改正について、施行日・対象者・変更点に分けて要約してください。根拠となる厚生労働省のURLも示してください。
+        </div>
+      </div>
+      <div class="prompt-card">
+        <div class="prompt-card-label">例2</div>
+        <h4>セミナー企画の骨子作成</h4>
+        <div class="prompt-text">
+          <button class="prompt-copy" onclick="copyPrompt(this)">コピー</button>
+          中小企業経営者向けに「助成金活用で人材定着」をテーマにした60分セミナーの構成案を、タイトル・3部構成の目次・各パートの概要つきで作成してください。
+        </div>
+      </div>
+      <div class="prompt-card">
+        <div class="prompt-card-label">例3</div>
+        <h4>顧客向けメール文案</h4>
+        <div class="prompt-text">
+          <button class="prompt-copy" onclick="copyPrompt(this)">コピー</button>
+          顧問先の中小企業社長に、来月施行される法改正について注意喚起するメール文案を、200字程度で丁寧な敬語で作成してください。
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================== -->
+<!-- ========== SECTION DIVIDER: 応用編 ========== -->
+<!-- ======================================================== -->
+<div class="section-divider" style="background: linear-gradient(135deg, #065f46, #047857);">
+  <h2>📗 応用編：実務に組み込むAI活用</h2>
+  <p>企画書作成・就業規則改定・助成金診断まで、ワンランク上の実践テクニック。</p>
+</div>
+
+<!-- ===== PROPOSAL FLOW TABLE ===== -->
+<section class="section">
+  <div class="container fade-in">
+    <span class="section-label">Practice Flow</span>
+    <h2 class="section-title">AIを活用した企画書作成フロー</h2>
+    <p class="section-subtitle">人間が目的と方向性を決め、AIが構成と本文を生成。最終仕上げは人間の判断で。</p>
+    <div class="media-frame" style="overflow-x: auto;">
+      <table class="flow-table">
+        <thead><tr><th>STEP</th><th>担当</th><th>内容</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><span class="badge-human">人</span></td><td>企画の目的、対象者、伝えたい内容、成果物の形式をAIに入力する</td></tr>
+          <tr><td>2</td><td><span class="badge-ai">AI</span></td><td>タイトル案、全体構成、章立て、想定ページ数を生成する</td></tr>
+          <tr><td>3</td><td><span class="badge-ai">AI</span></td><td>各章の本文、図解案、事例、キャッチコピーを作成する</td></tr>
+          <tr><td>4</td><td><span class="badge-human">人</span></td><td>専門家として内容を確認し、法改正情報や実務経験を加筆する</td></tr>
+          <tr><td>5</td><td><span class="badge-both">人+AI</span></td><td>スライドに整え、PDF化して完成させる</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WORKFLOW: 就業規則改定 ===== -->
+<section class="section section--gray">
+  <div class="container fade-in">
+    <span class="section-label">Rule Revision Flow</span>
+    <h2 class="section-title">就業規則改定を劇的に早める「6ステップ・コンベア」</h2>
+    <p class="section-subtitle">STEP 1〜5はAIが処理。最終のSTEP 6で専門家が法的責任を持って判断。</p>
+    <div class="workflow-steps">
+      <div class="wf-step"><div class="wf-step-num">1</div><h4>法改正の要約</h4><p>施行日・対象者・変更点</p></div>
+      <div class="wf-step"><div class="wf-step-num">2</div><h4>条文特定</h4><p>既存規程の該当条文番号</p></div>
+      <div class="wf-step"><div class="wf-step-num">3</div><h4>改定案生成</h4><p>条番号を変更せず改定</p></div>
+      <div class="wf-step"><div class="wf-step-num">4</div><h4>新旧対照表</h4><p>改定前後を比較表で</p></div>
+      <div class="wf-step"><div class="wf-step-num">5</div><h4>根拠提示</h4><p>法令URLと条文の表示</p></div>
+      <div class="wf-step"><div class="wf-step-num">6</div><h4>専門家が最終確認</h4><p>運用・経過措置の整合性判断</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PDCA CYCLE: 助成金AI ===== -->
+<section class="section">
+  <div class="container fade-in">
+    <span class="section-label">Subsidy AI PDCA</span>
+    <h2 class="section-title">助成金AIを育て上げる「PDCAサイクル」</h2>
+    <p class="section-subtitle">一度作って終わりではない。年度ごとに要件が変わるため、AIを継続的に更新する仕組みが必要。</p>
+    <div class="pdca-grid">
+      <div class="pdca-card">
+        <div class="pdca-letter">P</div>
+        <h4>Plan：新年度の要件を読み込ませる</h4>
+        <p>厚労省資料・パンフレット・要領をAIに読み込ませ、昨年度との差分を整理する。</p>
+      </div>
+      <div class="pdca-card">
+        <div class="pdca-letter">D</div>
+        <h4>Do：診断ロジックを更新する</h4>
+        <p>新しい要件を反映し、不要な項目を削除し、判定条件を書き換える。</p>
+      </div>
+      <div class="pdca-card">
+        <div class="pdca-letter">C</div>
+        <h4>Check：テストケースで検証する</h4>
+        <p>複数の企業パターンを作成し、診断結果や金額試算が正しいか確認する。</p>
+      </div>
+      <div class="pdca-card">
+        <div class="pdca-letter">A</div>
+        <h4>Act：公開・改善する</h4>
+        <p>利用者の声を反映し、質問項目や表示内容を分かりやすく修正する。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 8 AI ASSISTANTS ===== -->
+<section class="section section--gray">
+  <div class="container fade-in">
+    <span class="section-label">Module 6</span>
+    <h2 class="section-title">45分で作れる「8つの専用AIアシスタント」</h2>
+    <p class="section-subtitle">Claude Projects等で構築。一度作れば「事務所の資産」となる。</p>
+    <div class="assistants-grid">
+      <div class="assistant-card"><div class="assistant-icon">🎤</div><h4>セミナー企画AI</h4><p>構成案、講師台本を作成。</p></div>
+      <div class="assistant-card"><div class="assistant-icon">📊</div><h4>提案書作成AI</h4><p>提案書、説明資料を作成。</p></div>
+      <div class="assistant-card"><div class="assistant-icon">⚖️</div><h4>就業規則改定AI</h4><p>法改正をもとに規程改定。</p></div>
+      <div class="assistant-card"><div class="assistant-icon">💰</div><h4>助成金診断AI</h4><p>企業情報から要件を確認。</p></div>
+      <div class="assistant-card"><div class="assistant-icon">✉️</div><h4>メール返信AI</h4><p>顧客対応メール文案作成。</p></div>
+      <div class="assistant-card"><div class="assistant-icon">📢</div><h4>SNS発信AI</h4><p>専門情報を投稿文に変換。</p></div>
+      <div class="assistant-card"><div class="assistant-icon">📚</div><h4>研修資料AI</h4><p>スライド構成、ワーク作成。</p></div>
+      <div class="assistant-card"><div class="assistant-icon">📋</div><h4>業務マニュアルAI</h4><p>手順書、チェックリスト整備。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== REFERENCE LINKS ===== -->
+<section class="section section--navy">
+  <div class="container fade-in">
+    <span class="section-label">Reference Links</span>
+    <h2 class="section-title">参考リンク・サンプルサイト</h2>
+    <p class="section-subtitle">実際に構築されたAIツール・テンプレートをご覧いただけます。</p>
+    <div class="links-grid">
+      <a href="https://obusuma-kenji.github.io/chatgpt_template_lp/" target="_blank" rel="noopener" class="link-card">
+        <span class="link-icon">💬</span>
+        <span class="link-text">ChatGPTテンプレート</span>
+        <span class="link-arrow">→</span>
+      </a>
+      <a href="https://obusuma-kenji.github.io/ClaudeProjec_lp/" target="_blank" rel="noopener" class="link-card">
+        <span class="link-icon">🧠</span>
+        <span class="link-text">Claude Project LP</span>
+        <span class="link-arrow">→</span>
+      </a>
+      <a href="https://obusuma-kenji.github.io/joseikin-ai/" target="_blank" rel="noopener" class="link-card">
+        <span class="link-icon">💰</span>
+        <span class="link-text">助成金AI診断ツール</span>
+        <span class="link-arrow">→</span>
+      </a>
+      <a href="https://obusuma-kenji.github.io/jinji-system_lp/" target="_blank" rel="noopener" class="link-card">
+        <span class="link-icon">👥</span>
+        <span class="link-text">人事制度AI</span>
+        <span class="link-arrow">→</span>
+      </a>
+      <a href="https://obusuma-kenji.github.io/Draft_manuscript/" target="_blank" rel="noopener" class="link-card">
+        <span class="link-icon">🎬</span>
+        <span class="link-text">サンプルサイト・解説動画</span>
+        <span class="link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MEDIA: VIDEO & AUDIO ===== -->
+<section class="section section--gray">
+  <div class="container fade-in">
+    <span class="section-label">Video &amp; Audio</span>
+    <h2 class="section-title">セミナーコンテンツ</h2>
+    <p class="section-subtitle">動画・音声・資料で、いつでも学習いただけます。</p>
+
+    <div class="media-block">
+      <div class="media-label"><span class="icon icon--video">🎬</span> AI士業フレームワーク 解説動画</div>
+      <div class="media-frame">
+        <video controls preload="metadata"><source src="ai_shigyo_framework_small.mp4" type="video/mp4">お使いのブラウザは動画再生に対応していません。</video>
+      </div>
+    </div>
+
+    <div class="media-block">
+      <div class="media-label"><span class="icon icon--audio">🎧</span> AI活用 ポッドキャスト音声</div>
+      <div class="media-frame" style="padding: 2rem;">
+        <audio controls preload="metadata" style="width: 100%;"><source src="ai_sous_chef_small.m4a" type="audio/mp4">お使いのブラウザは音声再生に対応していません。</audio>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MEDIA: PDFs in IFRAME ===== -->
+<section class="section">
+  <div class="container fade-in">
+    <span class="section-label">Download Materials</span>
+    <h2 class="section-title">セミナー資料（PDF）</h2>
+    <p class="section-subtitle">iframeで直接プレビュー。ダウンロードしてご活用ください。</p>
+
+    <!-- メインガイドブック（入門編＋応用編） -->
+    <div class="media-block">
+      <div class="media-label"><span class="icon icon--pdf">📄</span> 士業AI活用実践ガイドブック（入門編＋応用編）</div>
+      <div class="media-frame">
+        <div class="pdf-object-wrap">
+          <object data="士業向けAI活用ガイド_A4見開きプレビュー_編集ツール.pdf" type="application/pdf">
+            <div style="display:flex;align-items:center;justify-content:center;height:100%;flex-direction:column;gap:1rem;color:var(--text-secondary);">
+              <p style="font-size:1.1rem;">PDFプレビューを表示できません</p>
+              <a href="士業向けAI活用ガイド_A4見開きプレビュー_編集ツール.pdf" target="_blank" rel="noopener" class="pdf-btn">新しいタブで開く →</a>
+            </div>
+          </object>
+        </div>
+        <div class="pdf-fallback">
+          <span class="pdf-fallback-text">士業AI活用実践ガイドブック</span>
+          <a href="士業向けAI活用ガイド_A4見開きプレビュー_編集ツール.pdf" target="_blank" rel="noopener" class="pdf-btn">開く →</a>
+          <a href="士業向けAI活用ガイド_A4見開きプレビュー_編集ツール.pdf" download class="pdf-btn pdf-btn--dl">⬇ ダウンロード</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="media-block">
+      <div class="media-label"><span class="icon icon--pdf">📄</span> 士業のための生成AI活用・実務改善マニュアル</div>
+      <div class="media-frame">
+        <div class="pdf-object-wrap">
+          <object data="Professional_AI_Manual.pdf" type="application/pdf">
+            <div style="display:flex;align-items:center;justify-content:center;height:100%;flex-direction:column;gap:1rem;color:var(--text-secondary);">
+              <p style="font-size:1.1rem;">PDFプレビューを表示できません</p>
+              <a href="Professional_AI_Manual.pdf" target="_blank" rel="noopener" class="pdf-btn">新しいタブで開く →</a>
+            </div>
+          </object>
+        </div>
+        <div class="pdf-fallback">
+          <span class="pdf-fallback-text">生成AI活用・実務改善マニュアル</span>
+          <a href="Professional_AI_Manual.pdf" target="_blank" rel="noopener" class="pdf-btn">開く →</a>
+          <a href="Professional_AI_Manual.pdf" download class="pdf-btn pdf-btn--dl">⬇ ダウンロード</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="media-block">
+      <div class="media-label"><span class="icon icon--pdf">📄</span> AIを「最強のパートナー」にする戦略</div>
+      <div class="media-frame">
+        <div class="pdf-object-wrap">
+          <object data="The_AI_Partner_Strategy.pdf" type="application/pdf">
+            <div style="display:flex;align-items:center;justify-content:center;height:100%;flex-direction:column;gap:1rem;color:var(--text-secondary);">
+              <p style="font-size:1.1rem;">PDFプレビューを表示できません</p>
+              <a href="The_AI_Partner_Strategy.pdf" target="_blank" rel="noopener" class="pdf-btn">新しいタブで開く →</a>
+            </div>
+          </object>
+        </div>
+        <div class="pdf-fallback">
+          <span class="pdf-fallback-text">AIパートナー戦略</span>
+          <a href="The_AI_Partner_Strategy.pdf" target="_blank" rel="noopener" class="pdf-btn">開く →</a>
+          <a href="The_AI_Partner_Strategy.pdf" download class="pdf-btn pdf-btn--dl">⬇ ダウンロード</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta-section">
+  <div class="cta-content fade-in">
+    <h2 class="cta-title">AIを正しく使いこなし、<br>真に顧客に寄り添う「未来の士業」へ</h2>
+    <p class="cta-text">安全性のガードレールを握りしめ、より深く、より付加価値の高い未来型事務所への第一歩を。</p>
+    <a href="https://cocodesmile.com" class="cta-btn" target="_blank" rel="noopener">お問い合わせ →</a>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <p>© 2026 おぶすま社会保険労務士事務所 ｜ <a href="https://cocodesmile.com" target="_blank" rel="noopener">kenjispark AI士業ラボ</a></p>
+</footer>
+
+<script>
+// Intersection Observer for fade-in
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+}, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// Copy prompt text
+function copyPrompt(btn) {
+  const text = btn.parentElement.textContent.replace('コピー', '').trim();
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'コピー済み！';
+    setTimeout(() => btn.textContent = 'コピー', 2000);
+  });
+}
+</script>
+</body>
+</html>
